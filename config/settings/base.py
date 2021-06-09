@@ -18,6 +18,8 @@ INSTALLED_APPS = [
     # Third Party Apps
     "rest_framework",
     "corsheaders",
+    # Local Apps
+    "projects",
 ]
 
 MIDDLEWARE = [
@@ -108,3 +110,7 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = "YOUR_EMAIL_HOST_USER"
 EMAIL_HOST_PASSWORD = "YOUR_EMAIL_HOST_PASSWORD"
+
+# Dropbox
+DEFAULT_FILE_STORAGE = "storages.backends.dropbox.DropBoxStorage"
+DROPBOX_OAUTH2_TOKEN = "YOUR_DROPBOX_TOKEN"

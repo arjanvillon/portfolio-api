@@ -8,6 +8,10 @@ django = "*"
 djangorestframework = "*"
 django-cors-headers = "*"
 python-decouple = "*"
+pillow = "*"
+django-storages = "*"
+dropbox = "*"
+whitenoise = "*"
 
 [dev-packages]
 black = "*"
