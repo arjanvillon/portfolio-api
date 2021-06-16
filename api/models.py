@@ -1,6 +1,7 @@
 import uuid
 import datetime
 from django.db import models
+from taggit.managers import TaggableManager
 from utilities.functions import generate_timestamp
 from .choices import PROJECT_LINK_TYPE_CHOICES
 
@@ -20,17 +21,17 @@ class Project(models.Model):
     uuid = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=50)
     description = models.TextField(blank=True)
-    image = models.ImageField(
-        upload_to=project_image_path, default="projects/default.jpg"
-    )
+    image = models.ImageField(upload_to=project_image_path, blank=True)
     year_start = models.PositiveIntegerField(
-        choices=[(r, r) for r in range(2000, datetime.date.today().year)],
+        choices=[(r, r) for r in range(2000, datetime.date.today().year + 1)],
         default=get_current_year,
     )
     year_end = models.PositiveIntegerField(
-        choices=[(r, r) for r in range(2000, datetime.date.today().year)],
+        choices=[(r, r) for r in range(2000, datetime.date.today().year + 1)],
         default=get_current_year,
     )
+    is_featured = models.BooleanField(default=False)
+    tags = TaggableManager()
 
     def __str__(self):
         return self.title
@@ -47,3 +48,15 @@ class ProjectLink(models.Model):
 
     def __str__(self):
         return f"{self.project.title}'s link"
+
+
+class Message(models.Model):
+    """Model for saving a sent message"""
+
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name

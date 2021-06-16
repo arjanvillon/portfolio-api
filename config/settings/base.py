@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -18,8 +19,10 @@ INSTALLED_APPS = [
     # Third Party Apps
     "rest_framework",
     "corsheaders",
+    "taggit",
+    "taggit_serializer",
     # Local Apps
-    "projects",
+    "api",
 ]
 
 MIDDLEWARE = [
@@ -38,7 +41,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -105,11 +108,13 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 # Email
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST = "smtp.zoho.com"
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = "YOUR_EMAIL_HOST_USER"
 EMAIL_HOST_PASSWORD = "YOUR_EMAIL_HOST_PASSWORD"
+EMAIL_HOST_CC = "YOUR_EMAIL_HOST_CC"
+
 
 # Dropbox
 DEFAULT_FILE_STORAGE = "storages.backends.dropbox.DropBoxStorage"

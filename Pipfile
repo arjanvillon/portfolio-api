@@ -12,6 +12,8 @@ pillow = "*"
 django-storages = "*"
 dropbox = "*"
 whitenoise = "*"
+django-taggit = "*"
+django-taggit-serializer = "*"
 
 [dev-packages]
 black = "*"
