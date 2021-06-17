@@ -120,7 +120,7 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
-EMAIL_HOST_CC = os.environ.get("EMAIL_HOST_CC")
+EMAIL_HOST_BCC = os.environ.get("EMAIL_HOST_BCC")
 
 # Dropbox
 DEFAULT_FILE_STORAGE = "storages.backends.dropbox.DropBoxStorage"

@@ -13,13 +13,13 @@ def send_email(
     subject,
     recipients,
     sender=settings.EMAIL_HOST_USER,
-    cc=settings.EMAIL_HOST_CC,
+    bcc=settings.EMAIL_HOST_BCC,
     context=None,
 ):
     html_template = render_to_string("email.html", context)
 
     email = EmailMultiAlternatives(
-        subject=subject, body=html_template, from_email=sender, to=recipients, cc=[cc]
+        subject=subject, body=html_template, from_email=sender, to=recipients, bcc=[bcc]
     )
 
     email.attach_alternative(html_template, "text/html")
