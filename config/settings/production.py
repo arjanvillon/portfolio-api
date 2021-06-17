@@ -1,4 +1,5 @@
 import os
+import dj_database_url
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -110,7 +111,8 @@ SECURE_FRAME_DENY = True
 
 # Cors
 CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
+    "https://arjanvillon.codes",
+    "http://arjanvillon.codes",
 ]
 
 # Email
@@ -125,3 +127,8 @@ EMAIL_HOST_BCC = os.environ.get("EMAIL_HOST_BCC")
 # Dropbox
 DEFAULT_FILE_STORAGE = "storages.backends.dropbox.DropBoxStorage"
 DROPBOX_OAUTH2_TOKEN = os.environ.get("DROPBOX_TOKEN")
+
+# dj-database-url
+db_from_env = dj_database_url.config()
+DATABASES["default"].update(db_from_env)
+DATABASES["default"]["CONN_MAX_AGE"] = 500
